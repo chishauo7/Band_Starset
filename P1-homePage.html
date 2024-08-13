@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Starset - HomePage</title>
     <link rel="stylesheet" href="./_css/bootstrap.css">
+    <!-- icon import -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
-        /* impor */
+        /* fonts impor */
 
         @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Sankofa+Display&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Orbitron:wght@600&family=Sankofa+Display&display=swap');
@@ -65,6 +67,7 @@
             font-size: 1em;
             font-family: "Merriweather", serif;
         }
+
         .headLink,
         .addToCart {
             font-size: 1em;
@@ -332,6 +335,29 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgb(78, 78, 78);
             z-index: 1000;
+            /* 確保在其他元素上方顯示 */
+        }
+
+        #pay {
+            display: none;
+        }
+
+        #pay.visible {
+            display: flex;
+            /* 使用 flex 布局，設定縱向欄位布局，內部物件則自定義 */
+            flex-direction: column;
+            position: fixed;
+            /* 固定定位，讓它漂浮在視窗中 */
+            top: 50%;
+            left: 50%;
+            max-width: 1000px;
+            min-width: 375px;
+            max-height: auto;
+            /* 使對齊位置從左上角偏移至物件的正中央 */
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            z-index: 999;
             /* 確保在其他元素上方顯示 */
         }
 
@@ -621,19 +647,21 @@
 
         /* 放字的物件 */
         .content {
+            opacity: 0.3;
             flex-wrap: wrap;
             padding: 20px 30px;
             background-color: rgba(0, 0, 0, 0.5);
             position: relative;
             border-radius: 6px;
             box-sizing: border-box;
+            transition: transform 0.2s ease-in-out,opacity 0.2s ease-in-out;
         }
-
+        
         .content:hover {
+            opacity: 1;
             text-shadow: 0 0 10px;
             transform: scale(1.05);
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-            transition: transform 0.2s ease-in-out;
 
         }
 
@@ -714,92 +742,7 @@
                         <th class="text_standard_01">$</th>
                         <th class="text_standard_01">No.</th>
                     </tr>
-                    <!-- <tr id="cartProduct1">
-                        <td><img src="./_img/01_Starset_Transmissions.jpg" alt="" class="product"></td>
-                        <td class="text_standard_006">
-                            Transmissions
-                        </td>
-                        <td id="cartProduct1Price" class="text_standard_006">
-                            10
-                        </td>
-                        <td id="cartProduct1QTY">
-                            <input class="product" type="number" id="buyCnt1" value="1" min="0">
-                        </td>
-                        <td id="subtotal1"></td>
-                        <td>
-                            <button type="button" class="btn text-light rounded-pill" onclick="calc(1)">Check</button>
-                        </td>
-                        <td>
-                            <button type="button" class="btn text-light rounded-pill"
-                                onclick="clearBuyCnt(1)">Clear</button>
-                        </td>
-                    </tr>
-                    <tr id="cartProduct2">
-                        <td>
-                            <img src="./_img/02_Starset_Vessels.jpg" alt="" class="product">
-                        </td>
-                        <td>
-                            Vessels
-                        </td>
-                        <td id="cartProduct2Price">
-                            13
-                        </td>
-                        <td id="cartProduct2QTY">
-                            <input class="product" type="number" id="buyCnt2" value="1" min="0">
-                        </td>
-                        <td id="subtotal2"></td>
-                        <td>
-                            <button type="button" class="btn text-light rounded-pill" onclick="calc(2)">Check</button>
-                        </td>
-                        <td>
-                            <button type="button" class="btn text-light rounded-pill"
-                                onclick="clearBuyCnt(2)">Clear</button>
-                        </td>
-                    </tr>
-                    <tr id="cartProduct3">
-                        <td>
-                            <img src="./_img/Starset_-_Divisions.png" alt="" class="product">
-                        </td>
-                        <td>
-                            Divisions
-                        </td>
-                        <td id="cartProduct3Price">
-                            10
-                        </td>
-                        <td id="cartProduct3QTY">
-                            <input class="product" type="number" id="buyCnt3" value="1" min="0">
-                        </td>
-                        <td id="subtotal3"></td>
-                        <td>
-                            <button type="button" class="btn text-light rounded-pill" onclick="calc(3)">Check</button>
-                        </td>
-                        <td>
-                            <button type="button" class="btn text-light rounded-pill"
-                                onclick="clearBuyCnt(3)">Clear</button>
-                        </td>
-                    </tr>
-                    <tr id="cartProduct4">
-                        <td>
-                            <img src="./_img/04_horizons.jpg" alt="" class="product">
-                        </td>
-                        <td>
-                            Horizons
-                        </td>
-                        <td id="cartProduct4Price">
-                            10
-                        </td>
-                        <td id="cartProduct4QTY">
-                            <input class="product" type="number" id="buyCnt4" value="1" min="0">
-                        </td>
-                        <td id="subtotal4"></td>
-                        <td>
-                            <button type="button" class="btn text-light rounded-pill" onclick="calc(4)">Check</button>
-                        </td>
-                        <td>
-                            <button type="button" class="btn text-light rounded-pill"
-                                onclick="clearBuyCnt(4)">Clear</button>
-                        </td>
-                    </tr> -->
+
                 </table>
                 <div name="closeButton" class="text-end positionAbsolute top0 right0 mt-3 me-4">
                     <button id="close1" class="noBackground" onclick="closeButton(1)">
@@ -816,6 +759,100 @@
                 <h4 class="text_special_015 me-3">Total: $<span id="totalAmount">0</span></h4>
                 <button type="button" class="headLink btn rounded-pill" onclick="checkout()">Checkout</button>
             </div>
+        </div>
+    </div>
+
+    <div id="pay" class="row text-light bg-dark">
+        <div class="container p-5">
+            <div name="closeButton" class="text-end positionAbsolute top0 right0 mt-3 me-4">
+                <button id="close1" class="noBackground" onclick="closeButton(3)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFFFFF"
+                        class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z" />
+                    </svg>
+                </button>
+            </div>
+            <form action="/action_page.php">
+                <div class="row">
+                    <div name="billAddressPart" class="col-6 p-4">
+                        <h3 class="text_special_015">Billing Address</h3>
+                        <div class="text_standard_01">
+                            <div class="row">
+                                <label for="fname" class="col-12 col-lg-4"><i class="fa fa-user"></i> Full
+                                    Name</label>
+                                <input type="text" class="col-12 col-lg-8" id="fname" name="firstname"
+                                    placeholder="Shau Lin">
+                            </div>
+                            <div class="row">
+                                <label for="email" class="col-12 col-lg-4"><i class="fa fa-envelope"></i>
+                                    Email</label>
+                                <input type="text" class="col-12 col-lg-8" id="email" name="email"
+                                    placeholder="123@gmail.com">
+                            </div>
+                            <div class="row">
+                                <label for="adr" class="col-12 col-lg-4"><i class="fa fa-address-card-o"></i>
+                                    Address</label>
+                                <input type="text" class="col-12 col-lg-8" id="adr" name="address"
+                                    placeholder="OOO street">
+                            </div>
+                            <div class="row">
+                                <label for="city" class="col-12 col-lg-4"><i class="fa fa-institution"></i>
+                                    City</label>
+                                <input type="text" class="col-12 col-lg-8" id="city" name="city" placeholder="Taichung">
+                            </div>
+                            <div class="row">
+                                <label for="state" class="col-12 col-lg-4">Country</label>
+                                <input type="text" class="col-12 col-lg-8" id="state" name="state" placeholder="Taiwan">
+                            </div>
+                            <!-- <div class="row">
+                                    <label for="zip" class="col-12 col-lg-4">Zip</label>
+                                    <input type="text" class="col-12 col-lg-8" id="zip" name="zip" placeholder="00000">
+                                </div> -->
+                        </div>
+                    </div>
+                    <div name="paymentPart" class="col-6 text_standard_01 p-4">
+                        <h3 class="text_special_015">Payment</h3>
+                        <div class="d-flex">
+                            <label for="fname">Accepted Cards　</label>
+                            <div>
+                                <i class="fa fa-cc-visa" style="color:rgb(44, 111, 255);"></i>
+                                <i class="fa fa-cc-amex" style="color:rgb(175, 175, 202);"></i>
+                                <i class="fa fa-cc-mastercard" style="color:red;"></i>
+                                <i class="fa fa-cc-discover" style="color:orange;"></i>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label for="cname" class="col-12 col-lg-4">Name on Card</label>
+                            <input type="text" class="col-12 col-lg-8" id="cname" name="cardname"
+                                placeholder="Shau Lin">
+                        </div>
+                        <div class="row">
+                            <label for="ccnum" class="col-12 col-lg-4">Credit card number</label>
+                            <input type="text" class="col-12 col-lg-8" id="ccnum" name="cardnumber"
+                                placeholder="1111-2222-3333-4444">
+                        </div>
+                        <div class="row">
+                            <label for="expmonth" class="col-12 col-lg-4">Exp Month</label>
+                            <input type="text" class="col-12 col-lg-8" id="expmonth" name="expmonth"
+                                placeholder="October">
+                        </div>
+                        <div class="row">
+                            <label for="expyear" class="col-12 col-lg-4">Exp Year</label>
+                            <input type="text" class="col-12 col-lg-8" id="expyear" name="expyear" placeholder="2024">
+                        </div>
+                        <div class="row">
+                            <label for="cvv" class="col-12 col-lg-4">CVV</label>
+                            <input type="text" class="col-12 col-lg-8" id="cvv" name="cvv" placeholder="013">
+                        </div>
+                    </div>
+                </div>
+                <label>
+                    <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
+                </label>
+                <input type="submit" value="Continue to checkout" class="btn">
+            </form>
+
         </div>
     </div>
 
@@ -915,9 +952,9 @@
                 <div class="carousel-item">
                     <img src="./_img/meber3.webp" class="d-block w-100" alt="...">
                 </div>
-                <!-- <div class="carousel-item">
-                    <img src="./_img/cover.jpg" class="d-block w-100" alt="...">
-                </div> -->
+                <div class="carousel-item">
+                    <img src="./_img/member2.jpg" class="d-block w-100" alt="...">
+                </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
                 data-bs-slide="prev">
@@ -931,7 +968,7 @@
             </button>
             <iframe style="border-radius:12px"
                 src="https://open.spotify.com/embed/track/3Xfg7AegXaDLoD5GOUMf2e?utm_source=generator&theme=0"
-                width="60%" height="100" frameBorder="0" allowfullscreen=""
+                width="60%" height="100" frameBorder="0"
                 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                 loading="lazy"></iframe>
         </div>
@@ -988,7 +1025,7 @@
             <div class="timelineContainer left" id="concert_1">
                 <div class="content">
                     <h2 class="text-light text_special_015">IMMERSION: THE FINAL CHAPTER</h2>
-                    <p class="text-secondary text_standard_01 content">
+                    <p class="text-secondary text_standard_01">
                         Date: Aug 31, 2024
                         <br>
                         Location: KEMBA LIVE! Columbus, OH
@@ -1001,39 +1038,39 @@
             <div class="timelineContainer right" id="concert_2">
                 <div class="content">
                     <h2 class="text-light text_special_015">IMMERSION: THE FINAL CHAPTER</h2>
-                    <p class="text-secondary text_standard_01 content">
+                    <p class="text-secondary text_standard_01">
                         Date: Sep 6, 2024
                         <br>
                         Location: The Fillmore Detroit, MI
                     </p>
                     <div class="text-end">
-                        <button class="btn rounded-pill headLink" id="booking_concert_1" onclick="">Booking</button>
+                        <button class="btn rounded-pill headLink" id="booking_concert_2" onclick="">Booking</button>
                     </div>
                 </div>
             </div>
-            <div class="timelineContainer left">
+            <div class="timelineContainer left" id="concert_3">
                 <div class="content">
                     <h2 class="text-light text_special_015">Starset</h2>
-                    <p class="text-secondary text_standard_01 content">
+                    <p class="text-secondary text_standard_01">
                         Date: Sep 8, 2024
                         <br>
                         Location: MTELUS Montreal, QC
                     </p>
                     <div class="text-end">
-                        <button class="btn rounded-pill headLink" id="booking_concert_1" onclick="">Booking</button>
+                        <button class="btn rounded-pill headLink" id="booking_concert_3" onclick="">Booking</button>
                     </div>
                 </div>
             </div>
-            <div class="timelineContainer right">
+            <div class="timelineContainer right" id="concert_4">
                 <div class="content">
                     <h2 class="text-light text_special_015">Starset</h2>
-                    <p class="text-secondary text_standard_01 content">
+                    <p class="text-secondary text_standard_01">
                         Date: Sep 9, 2024
                         <br>
                         Location: HISTORY Toronto, ON
                     </p>
                     <div class="text-end">
-                        <button class="btn rounded-pill headLink" id="booking_concert_1" onclick="">Booking</button>
+                        <button class="btn rounded-pill headLink" id="booking_concert_4" onclick="">Booking</button>
                     </div>
                 </div>
             </div>
@@ -1123,7 +1160,7 @@
                                     <p class="col card-text text-secondary text_standard_01" id="album_2_price"
                                         style="margin: 0.5em 0 0 0;">10</p>
                                 </div>
-                                <button class="btn rounded-pill col-8 addToCart" id="album_2_add"
+                                <button class="btn rounded-pill col-8 addToCart" id="album_1_add"
                                     onclick="addItemIntoCart(2)">Add to
                                     Cart</button>
                             </div>
@@ -1236,7 +1273,7 @@ Drum    Adam Gilbert
             <div class="m-auto row py-3" style="width: 70%;">
                 <hr class="py-3">
             </div>
-                <!-- <button id="close2" onclick="closeButton(2)">
+            <!-- <button id="close2" onclick="closeButton(2)">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFFFFF"
                         class="bi bi-x-circle-fill" viewBox="0 0 16 16">
                         <path
@@ -1245,37 +1282,28 @@ Drum    Adam Gilbert
                 </button> -->
             <form action="">
                 <fieldset>
-                    <legend class="text-center text-light text_special_015">Subscribe</legend>
-                    <div class="row">
-                        <div class="col">
-                            <p class="text-end mt-2">
-                                User name<colorRed>*</colorRed>
-                            </p>
-                            <p class="text-end">
-                                e-mail<colorRed>*</colorRed>
-                            </p>
-                            <p class="text-end">
-                                Password<colorRed>*</colorRed>
-                            </p>
+                    <legend class="text-center text-light text_special_015 pb-3">Subscribe</legend>
+                    <div class="text-center text_special_01">
+                        <div class="m-2">
+                            <i class="fa fa-user icon pb-3"></i>
+                            <input type="text" placeholder="User name" id="userName" class="bg-dark text-light"
+                                required>
                         </div>
-                        <div class="col">
-                            <div class="m-2">
-                                <input type="text" placeholder="Starset" class="bg-dark text-light" required>
-                            </div>
-                            <div class="m-2">
-                                <input type="email" placeholder="123@gmail.com" class="bg-dark text-light" required>
-                            </div>
-                            <div class="m-2">
-                                <input type="password" name="" id="" class="bg-dark text-light" required>
-                            </div>
-                            <div class="ms-2">
-                                <input type="checkbox" name="" class="bg-dark text-light" id="News">
-                                <label for="News">Newsletter</label><br>
-                                <input type="checkbox" name="" class="bg-dark text-light" id="Contract" checked
-                                    required>
-                                <label for="Contract">Terms of Service</label>
-                                <ColorRed>*</ColorRed>
-                            </div>
+                        <div class="m-2">
+                            <i class="fa fa-envelope icon pb-3"></i>
+                            <input type="email" placeholder="123@gmail.com" id="userEmail" class="bg-dark text-light"
+                                required>
+                        </div>
+                        <div class="m-2">
+                            <i class="fa fa-key icon"></i>
+                            <input type="password" placeholder="Password" name="" id="userPWD"
+                                class="bg-dark text-light" required>
+                        </div>
+                        <div class="m-4 text_standard_01">
+                            <input type="checkbox" name="" class="bg-dark text-light" id="News">
+                            <label for="News">Newsletter</label>
+                            <input type="checkbox" name="" class="bg-dark text-light" id="Contract" checked required>
+                            <label for="Contract">Terms of Service</label>
                         </div>
                     </div>
                     <div class="text-center mt-3">
@@ -1417,6 +1445,11 @@ Drum    Adam Gilbert
 
 
     <!-- --- -->
+
+
+    <!-- --- 負責連到carousel --- -->
+    <script src="./_js/popper.min.js"></script>
+    <script src="./_js/bootstrap.min.js"></script>
 
     <script name="cartAllFunc">
 
@@ -1602,27 +1635,23 @@ Drum    Adam Gilbert
         // 對html文件的事件監聽器
         document.addEventListener('DOMContentLoaded', function () {
             // 物件陣列 [{物件1，屬性id},{物件2，屬性id}]
-            const elements = [
-                { id: 'carouselExampleControls' },
-                { id: 'productCards' }
+            const elementIds = [
+                'carouselExampleControls',
+                'productCards',
             ];
-            console.log(elements);
+            // 將 ID 轉換為元素陣列
+            const elements = elementIds.map(id => document.getElementById(id)).filter(el => el !== null);
 
             //檢視指定元素
             function checkVisibility() {
-                // 檢視在elements裡面的每一個function(){}
-                elements.forEach(function (element) {
-                    const el = document.getElementById(element.id);
-                    if (el) {
-                        // 回傳多個DOMrect物件，包含bottom,height,left,right,top,width,x,y
-                        const rect = el.getBoundingClientRect();
-                        //檢視目前視窗的高度
-                        const windowHeight = window.innerHeight;
-                        if (rect.top <= windowHeight && rect.bottom >= 0) {
-                            el.classList.add('visible');
-                        } else {
-                            el.classList.remove('visible');
-                        }
+                elements.forEach(function (el) {
+                    const rect = el.getBoundingClientRect();
+                    const windowHeight = window.innerHeight;
+
+                    if (rect.top <= windowHeight && rect.bottom >= 0) {
+                        el.classList.add('visible');
+                    } else {
+                        el.classList.remove('visible');
                     }
                 });
             }
@@ -1631,11 +1660,34 @@ Drum    Adam Gilbert
             checkVisibility();
 
             // Check on scroll
-            window.addEventListener('scroll', function () {
-                elements.forEach(checkVisibility);
-            });
+            window.addEventListener('scroll', checkVisibility);
         });
 
+
+    </script>
+
+    <script name="subscribeFunc">
+
+        function signConfirm() {
+            const userName = document.getElementById('userName').value;
+            const userEmail = document.getElementById('userEmail').value;
+            const userPWD = document.getElementById('userPWD').value;
+
+            if (userName !== '') {
+                if (userEmail !== '') {
+                    if (userPWD !== '') {
+                        window.alert('Thank you for subscription.')
+                    } else {
+                        window.alert('Please type correct password.')
+                    }
+                } else {
+                    window.alert('Please type e-mail and password.')
+                }
+            } else {
+                window.alert('Please type correct information.')
+            }
+
+        }
 
     </script>
 
@@ -1648,6 +1700,7 @@ Drum    Adam Gilbert
             const elementIds = {
                 1: ['myCart', 'backgroundLayer'],
                 2: ['SignIn'],
+                3: ['pay']
             };
             const elementId = elementIds[timesId];
             // if var，等同檢視var是否具有值
@@ -1694,6 +1747,16 @@ Drum    Adam Gilbert
                 } else {
                     element.classList.add('visible');
                 }
+            }
+        }
+
+        function checkout() {
+            var rows = document.querySelectorAll('#cartProductsTable tr');
+            if (rows.length > 1) {
+                toggleVisibility('pay');
+                closeButton(1);
+            } else {
+                window.alert('The cart is empty.');
             }
         }
 
@@ -1752,8 +1815,6 @@ Drum    Adam Gilbert
         }
     </script>
 
-    <!-- --- 負責連到carousel --- -->
-    <script src="../_js/bootstrap.min.js"></script>
 
 </body>
 
